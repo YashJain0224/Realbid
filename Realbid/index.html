@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Real Estate Platform</title>
+<!-- <link rel="stylesheet" href="style.css"> -->
+<style>
+    body {
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Navigation bar styles */
+  /* Base navigation styles */
+  nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background-color: #fff;
+    gap: 200px;
+  }
+  
+  /* Link styles */
+  nav a {
+    text-decoration: none;
+    color: #333;
+    padding: 5px 10px;
+    border-radius: 5px; /* Add rounded corners to all links */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover and focus styles */
+  }
+  
+  /* Highlighting the link dynamically when it is active or focused */
+  nav a:active,
+  nav a:focus {
+    color: #ff5722; /* This color will be applied on click and while the link is focused */
+    outline: none; /* Removes the default focus outline */
+  }
+  
+  /* Always highlighted "LIVE AUCTION" link */
+  nav a.highlight {
+    background-color: #ff5722;
+    color: #fff;
+    border: 1px solid #ff5722; /* Keeping the border same as the background for a solid look */
+  }
+  
+  /* Hover effect for all links */
+  nav a:hover {
+    background-color: #ff5722;
+    color: #fff;
+  }
+  
+  .hero {
+  position: relative; /* This makes it a containing block for absolute children */
+  background-image: url('path-to-your-house-image.jpg');
+  background-size: cover;
+  background-position: center;
+  padding: 50px;
+  text-align: center;
+  height: 630px; /* Adjust as per your design */
+}
+  
+  .search-box {
+    margin-top: 20px;
+  }
+  
+  .buttons button {
+    background-color: #ff5722;
+    border: none;
+    padding: 10px;
+    margin: 5px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .services {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 20px 0;
+  }
+  
+  .service-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 30px;
+  }
+  
+  .service-item img {
+    width: 80px; /* Adjust size as needed */
+    height: 80px; /* Adjust size as needed */
+    border-radius: 50%; /* Makes the image circular */
+    margin-bottom: 10px;
+    background-color: #f0f0f0; /* Placeholder for actual image background */
+    padding: 10px;
+  }
+  
+  .service-item p {
+    text-align: center;
+    margin-top: 5px;
+    color: #333;
+  }
+  
+  .post-property {
+    justify-content: center;
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .post-property button {
+    position: absolute;
+  bottom: -20px; /* Adjust this value as needed to move the button lower or higher */
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #ff5722;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 10; /* Ensure it's above other elements */
+    
+  }
+  
+  .about {
+    background-color: #f8f8f8;
+    padding: 40px;
+    text-align: center;
+  }
+  
+  .about h2 {
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .about p {
+    color: #666;
+    margin-bottom: 20px;
+  }
+  
+  .cta {
+    background-color: #ff5722;
+    color: white;
+    padding: 40px;
+    text-align: center;
+  }
+  
+  .cta h2 {
+    margin-bottom: 20px;
+  }
+  
+  #cta-button {
+    background-color: #000;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .testimonials {
+    background-color: #fff;
+    padding: 40px;
+    text-align: center;
+  }
+  
+  .testimonial {
+    display: inline-block;
+    margin: 10px;
+    width: 200px; /* Adjust width as necessary */
+  }
+  
+  .testimonial img {
+    width: 100%;
+    border-radius: 50%;
+  }
+  
+  .testimonial blockquote {
+    font-style: italic;
+    color: #666;
+  }
+  
+  .news {
+    background-color: #333;
+    color: white;
+    padding: 40px;
+    text-align: center;
+  }
+  
+  .news article {
+    display: inline-block;
+    margin: 10px;
+    background-color: #444;
+    padding: 20px;
+    width: 200px; /* Adjust width as necessary */
+  }
+  
+  .news article img {
+    width: 100%;
+  }
+  
+  .news h3 {
+    color: #fff;
+  }
+  
+  .news p {
+    color: #aaa;
+  }
+  
+  footer {
+    background-color: #000;
+    color: #fff;
+    padding: 20px;
+  }
+  
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .footer-logo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .footer-logo img {
+    margin-right: 10px;
+  }
+  
+  .footer-social {
+    text-align: right;
+  }
+  
+  .footer-social p {
+    margin-bottom: 10px;
+  }
+  
+  .footer-social a {
+    margin: 0 5px;
+  }
+  
+  hr {
+    border: 0;
+    height: 1px;
+    background-color: #333;
+    margin: 20px 0;
+  }
+  
+  .footer-links {
+    text-align: center;
+    padding-bottom: 20px;
+  }
+  
+  .footer-links a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+  }
+  
+  /* This is for the hover effect on the footer links */
+  .footer-links a:hover {
+    text-decoration: underline;
+  }
+  
+</style>
+
+
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="#">About Us</a>
+    <a href="liveauction.html" class="highlight" id="liveAuctionLink">LIVE AUCTION</a>
+    <a href="#">Sign Up</a>
+    <a href="#">Sign in</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <!-- Hero Image would go here as a background -->
+    <img src="house.jpg" alt="house">
+    <div class="search-box">
+      <input type="text" placeholder="Search Locality">
+      <button>Search</button>
+    </div>
+    <div class="buttons">
+      <button>Buy</button>
+      <button>Rent</button>
+      <button>Plot</button>
+      <button>Residential</button>
+      <button>Commercial</button>
+    </div>
+  </section>
+
+  <section class="services">
+    <div class="services">
+        <div class="service-item">
+          <img src="rental-agreement-icon.png" alt="Rental Agreement">
+          <p>Rental Agreement</p>
+        </div>
+        <!-- Repeat the above block for each service item -->
+        <div class="service-item">
+          <img src="booking-token-icon.png" alt="Booking Token">
+          <p>Booking Token</p>
+        </div>
+        <div class="service-item">
+            <img src="rental-agreement-icon.png" alt="For NRI">
+            <p>For NRI</p>
+          </div>
+          <!-- Repeat the above block for each service item -->
+          <div class="service-item">
+            <img src="booking-token-icon.png" alt="Rent Now Pay Later">
+            <p>Rent Now Pay Later</p>
+          </div>
+          <div class="service-item">
+            <img src="rental-agreement-icon.png" alt="Personal Assistance">
+            <p>Personal Assistance</p>
+          </div>
+          <!-- Repeat the above block for each service item -->
+          <div class="service-item">
+            <img src="booking-token-icon.png" alt="Auction Timing">
+            <p>Auction Timing</p>
+          </div>
+          <div class="service-item">
+            <img src="rental-agreement-icon.png" alt="Personal Loan">
+            <p>Personal Loan</p>
+          </div>
+          <!-- Repeat the above block for each service item -->
+          <div class="service-item">
+            <img src="booking-token-icon.png" alt="Maid Service">
+            <p>Maid Service</p>
+          </div>
+          <div class="service-item">
+            <img src="rental-agreement-icon.png" alt="Property Management">
+            <p>Property Management</p>
+          </div>
+          <!-- Repeat the above block for each service item -->
+          <div class="service-item">
+            <img src="booking-token-icon.png" alt="Furniture">
+            <p>Furniture</p>
+          </div>
+      </div>
+      
+      <div class="post-property">
+        <button>Post Property For Free</button>
+      </div>
+      
+    <!-- Repeat for each service -->
+  </section>
+  <section class="about">
+    <h2>What Does RealBid.Com Do?</h2>
+    <p>We revolutionize real estate with our advanced bidding system, offering you an all-in-one solution for secure and reliable transactions. Get the real estate insider's edge with us today!</p>
+    <img src="Picture2.png" alt="Illustration of Real Estate Auction">
+  </section>
+  
+  <section class="cta">
+    <h2>Click And Earn</h2>
+    <p>Earn cash for every property deal facilitated by your referral. Click below to learn more details.</p>
+    <button id="cta-button">Upload Now</button>
+  </section>
+  
+  <section class="testimonials">
+    <h2>Hear From Our Customers</h2>
+    <div class="testimonial">
+      <img src="customer-photo.png" alt="Customer photo">
+      <blockquote>"This is customer quote. The product is great, provides excellent value."</blockquote>
+      <p>Name Lastname</p>
+    </div>
+    <!-- Repeat for each testimonial -->
+  </section>
+  
+  <section class="news">
+    <h2>News And Articles</h2>
+    <article>
+      <img src="news-image.png" alt="News headline">
+      <h3>News Headline 1</h3>
+      <p>Summary of the news article.</p>
+    </article>
+    <!-- Repeat for each news article -->
+  </section>
+  <footer>
+    <div class="footer-content">
+      <div class="footer-logo">
+        <img src="logo.png" alt="Logo" />
+        <span>Logo</span>
+      </div>
+      <div class="footer-social">
+        <p>©2023 - 2024 RealBid Solutions Pvt. Ltd.</p>
+        <a href="https://instagram.com"><img src="instagram-icon.png" alt="Instagram"></a>
+        <a href="https://facebook.com"><img src="facebook-icon.png" alt="Facebook"></a>
+        <a href="https://twitter.com"><img src="twitter-icon.png" alt="Twitter"></a>
+        <a href="https://linkedin.com"><img src="linkedin-icon.png" alt="LinkedIn"></a>
+      </div>
+    </div>
+    <hr />
+    <div class="footer-links">
+      <a href="#">About Us</a>
+      <a href="#">Career</a>
+      <a href="#">Testimonials</a>
+      <a href="#">Terms & Conditions</a>
+      <a href="#">Privacy</a>
+      <a href="#">Contact Us</a>
+      <a href="#">FAQ's</a>
+    </div>
+  </footer>
+  
+  
+</main>
+
+</body>
+</html>

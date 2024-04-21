@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Auction Rules - RealBid.com</title>
+<style>
+    body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+header {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  padding: 10px 0;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.logo {
+  color: #333;
+  text-decoration: none;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+nav a {
+  text-decoration: none;
+  color: #333;
+  margin: 0 10px;
+  padding: 5px 10px;
+  transition: color 0.3s ease;
+}
+
+nav a.highlight {
+  color: #ff5722;
+  border: 1px solid #ff5722;
+  border-radius: 5px;
+}
+
+nav a.highlight:hover,
+nav a.highlight:focus {
+  background-color: #ff5722;
+  color: white;
+}
+
+.rules-container {
+  max-width: 800px;
+  background-color: #fff;
+  margin: 50px auto;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+h1 {
+  color: #333;
+  text-align: center;
+}
+
+.rules-list {
+  list-style: none;
+  padding: 0;
+}
+
+.rules-list li {
+  background-color: #f9f9f9;
+  margin: 10px 0;
+  padding: 10px;
+  border-left: 5px solid #ff5722;
+}
+
+button#startAuctionBtn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-top: 20px;
+  background-color: #ff5722;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button#startAuctionBtn:hover {
+  background-color: #e64a19;
+}
+
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+  }
+
+  .rules-container {
+    width: 90%;
+    margin: 20px auto;
+  }
+}
+
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-content">
+    <a href="#" class="logo">RealBid.com</a>
+    <nav>
+      <a href="#">About Us</a>
+      <a href="#" class="highlight">LIVE AUCTION</a>
+      <a href="#">Sign Up</a>
+      <a href="#">Sign in</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="rules-container">
+    <h1>Auction Rules</h1>
+    <ul class="rules-list">
+      <li>The property will be opened for bidding at the mentioned time.</li>
+      <li>The bidding will be stopped when the auction duration is over or only one participant is left in the room.</li>
+      <li>The bidder has to pay the auction fees before bidding and the fees will be refunded if you didn't win.</li>
+      <li>The participant who won the auction has to pay the certain price of the property which he won.</li>
+      <li>The participant can place any number of bids.</li>
+      <li>Extra time will be awarded if constant bids are placed.</li>
+      <li>The details of the owner of the property will be given to the participant who won the auction.</li>
+    </ul>
+    <button id="startAuctionBtn">START AUCTION</button>
+  </div>
+</main>
+
+
+  // JavaScript to handle opening the auction page in a new window
+  <script>
+  // JavaScript to handle navigation to the auction page in the same window
+  document.getElementById('startAuctionBtn').addEventListener('click', function() {
+    window.location.href = 'liveauction2.html'; // Change the current window location
+  });
+</script>
+
+
+
+</body>
+</html>

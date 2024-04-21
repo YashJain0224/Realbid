@@ -1,0 +1,253 @@
+body {
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Navigation bar styles */
+  /* Base navigation styles */
+  nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background-color: #fff;
+    gap: 200px;
+  }
+  
+  /* Link styles */
+  nav a {
+    text-decoration: none;
+    color: #333;
+    padding: 5px 10px;
+    border-radius: 5px; /* Add rounded corners to all links */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover and focus styles */
+  }
+  
+  /* Highlighting the link dynamically when it is active or focused */
+  nav a:active,
+  nav a:focus {
+    color: #ff5722; /* This color will be applied on click and while the link is focused */
+    outline: none; /* Removes the default focus outline */
+  }
+  
+  /* Always highlighted "LIVE AUCTION" link */
+  nav a.highlight {
+    background-color: #ff5722;
+    color: #fff;
+    border: 1px solid #ff5722; /* Keeping the border same as the background for a solid look */
+  }
+  
+  /* Hover effect for all links */
+  nav a:hover {
+    background-color: #ff5722;
+    color: #fff;
+  }
+  
+  .hero {
+    background-image: url('path-to-your-house-image.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 50px;
+    text-align: center;
+  }
+  
+  .search-box {
+    margin-top: 20px;
+  }
+  
+  .buttons button {
+    background-color: #ff5722;
+    border: none;
+    padding: 10px;
+    margin: 5px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .services {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 20px 0;
+  }
+  
+  .service-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 30px;
+  }
+  
+  .service-item img {
+    width: 80px; /* Adjust size as needed */
+    height: 80px; /* Adjust size as needed */
+    border-radius: 50%; /* Makes the image circular */
+    margin-bottom: 10px;
+    background-color: #f0f0f0; /* Placeholder for actual image background */
+    padding: 10px;
+  }
+  
+  .service-item p {
+    text-align: center;
+    margin-top: 5px;
+    color: #333;
+  }
+  
+  .post-property {
+    justify-content: center;
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .post-property button {
+    justify-content: center;
+    background-color: #ff5722;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    
+  }
+  
+  .about {
+    background-color: #f8f8f8;
+    padding: 40px;
+    text-align: center;
+  }
+  
+  .about h2 {
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .about p {
+    color: #666;
+    margin-bottom: 20px;
+  }
+  
+  .cta {
+    background-color: #ff5722;
+    color: white;
+    padding: 40px;
+    text-align: center;
+  }
+  
+  .cta h2 {
+    margin-bottom: 20px;
+  }
+  
+  #cta-button {
+    background-color: #000;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .testimonials {
+    background-color: #fff;
+    padding: 40px;
+    text-align: center;
+  }
+  
+  .testimonial {
+    display: inline-block;
+    margin: 10px;
+    width: 200px; /* Adjust width as necessary */
+  }
+  
+  .testimonial img {
+    width: 100%;
+    border-radius: 50%;
+  }
+  
+  .testimonial blockquote {
+    font-style: italic;
+    color: #666;
+  }
+  
+  .news {
+    background-color: #333;
+    color: white;
+    padding: 40px;
+    text-align: center;
+  }
+  
+  .news article {
+    display: inline-block;
+    margin: 10px;
+    background-color: #444;
+    padding: 20px;
+    width: 200px; /* Adjust width as necessary */
+  }
+  
+  .news article img {
+    width: 100%;
+  }
+  
+  .news h3 {
+    color: #fff;
+  }
+  
+  .news p {
+    color: #aaa;
+  }
+  
+  footer {
+    background-color: #000;
+    color: #fff;
+    padding: 20px;
+  }
+  
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .footer-logo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .footer-logo img {
+    margin-right: 10px;
+  }
+  
+  .footer-social {
+    text-align: right;
+  }
+  
+  .footer-social p {
+    margin-bottom: 10px;
+  }
+  
+  .footer-social a {
+    margin: 0 5px;
+  }
+  
+  hr {
+    border: 0;
+    height: 1px;
+    background-color: #333;
+    margin: 20px 0;
+  }
+  
+  .footer-links {
+    text-align: center;
+    padding-bottom: 20px;
+  }
+  
+  .footer-links a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+  }
+  
+  /* This is for the hover effect on the footer links */
+  .footer-links a:hover {
+    text-decoration: underline;
+  }
+  

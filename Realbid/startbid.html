@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sealed Bid Auction - RealBid.com</title>
+<style>
+    body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #ececec;
+  color: #333;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  max-width: 1200px;
+  margin: 20px auto;
+  background: white;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.image-gallery {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 10px;
+}
+
+.image-gallery main img {
+  width: 100%;
+  height: auto;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.image-gallery nav img {
+  width: 100px;
+  height: auto;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.auction-details {
+  padding-left: 20px;
+  display: grid;
+  gap: 16px;
+}
+
+.auction-title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.auction-description {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.countdown {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  font-weight: bold;
+}
+
+.countdown .time {
+  text-align: center;
+}
+
+.current-bid {
+  font-size: 20px;
+  margin-top: 20px;
+}
+
+.bid-amount {
+  font-size: 24px;
+  color: #ff5722;
+  margin-top: 8px;
+}
+
+.bid-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.bid-form {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 10px;
+}
+
+.bid-form input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.bid-form button {
+  padding: 12px 20px;
+  background-color: #ff5722;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.bid-form button:hover {
+  background-color: #e64a19;
+}
+
+.property-details p {
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+
+  .image-gallery nav {
+    overflow-x: auto;
+    display: flex;
+    gap: 10px;
+  }
+
+  .auction-details {
+    padding-left: 0;
+  }
+
+  .bid-info {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .bid-form {
+    grid-template-columns: 1fr;
+  }
+}
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+}
+
+/* Add animation - zoom in the modal */
+@keyframes zoom {
+  from {transform: scale(0)} 
+  to {transform: scale(1)}
+}
+
+.modal-content, #caption {
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+/* The Close Button */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Responsive columns - next to each other on large screens and stacked on small screens */
+@media screen and (max-width: 700px) {
+  .row > .column {
+    width: 100%;
+    display: block;
+  }
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Style the submit bid input */
+.bid-input {
+  margin-top: 20px;
+}
+
+.bid-input input[type=number] {
+  width: 80%;
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.bid-input input[type=submit] {
+  padding: 10px 20px;
+  background-color: #ff5722;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.bid-input input[type=submit]:hover {
+  background-color: #e64a19;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div id="myModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="img01">
+        <div id="caption"></div>
+    </div>
+  <div class="image-gallery">
+    <main>
+      <img src="house.jpg" alt="Main Property">
+    </main>
+    <nav>
+      <img src="house.jpg" alt="Property Thumbnail">
+      <img src="house.jpg" alt="Property Thumbnail">
+      <img src="house.jpg" alt="Property Thumbnail">
+    </nav>
+  </div>
+
+  <div class="auction-details">
+    <div class="auction-title">This is a Sealed Bid Auction</div>
+    <p class="auction-description">This auction is sealed. In this type of auction all bidders simultaneously submit sealed bids so that no bidder knows the bid of any other participant. The highest bidder pays the price they submitted. If two bids with the same value are placed for auction the one which was placed first wins the auction.</p>
+    <div class="countdown">
+      <div class="time">
+        <span class="days">03</span>
+        <div>DAYS</div>
+      </div>
+      <div class="time">
+        <span class="hours">24</span>
+        <div>HOURS</div>
+      </div>
+      <div class="time">
+        <span class="minutes">20</span>
+        <div>MINUTES</div>
+      </div>
+      <div class="time">
+        <span class="seconds">15</span>
+        <div>SECONDS</div>
+      </div>
+    </div>
+    <p class="auction-end-time">Auction ends - 25th March 2024</p>
+    <p class="timezone">Timezone - (GMT+5:30)</p>
+    <div class="current-bid">
+        <span>CURRENT BID</span>
+        <div id="currentBidAmount" class="bid-amount">₹1,20,00,000</div>
+      </div>
+    <div class="bid-info">
+      <div class="bids-number">Number of Bids - 0</div>
+      <div class="minimum-bid">Minimum bid for this auction - ₹1,00,000</div>
+    </div>
+    <form class="bid-form" onsubmit="return false;">
+        <input id="bidInput" type="number" placeholder="Enter your bid" min="100000" step="1000" required>
+        <button type="submit" onclick="placeBid()">Place Bid</button>
+      </form>
+    <div class="property-details">
+      <p>Vellore Institute of Technology, Katpadi, Vellore Tamil Nadu, India, 632014</p>
+      <!-- ... Other property details ... -->
+    </div>
+  </div>
+</div>
+<script>
+    // Get the modal
+    var modal = document.getElementById('myModal');
+    
+    // Get the image and insert it inside the modal - use its "alt" text as a caption
+    var img = document.getElementById('mainImage');
+    var modalImg = document.getElementById('img01');
+    var captionText = document.getElementById('caption');
+    img.onclick = function(){
+      modal.style.display = "block";
+      modalImg.src = this.src;
+      captionText.innerHTML = this.alt;
+    }
+    
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+    
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() { 
+      modal.style.display = "none";
+    }
+// Function to handle placing a bid
+function placeBid() {
+  // Parse current bid and user bid to integers
+  var currentBid = parseInt(document.getElementById('currentBidAmount').innerText.replace(/[^0-9]/g, ''));
+  var userBid = parseInt(document.getElementById('bidInput').value);
+
+  // Check if the user bid is greater than the current bid
+  if (userBid > currentBid) {
+    // Update the current bid amount on the screen
+    document.getElementById('currentBidAmount').innerText = `₹${userBid.toLocaleString()}`;
+  } else {
+    // Alert the user that their bid is too low
+    alert('Your bid must be higher than the current bid.');
+  }
+}
+
+// Get the modal
+var modal = document.getElementById('myModal');
+var img = document.getElementById('mainImage');
+var modalImg = document.getElementById('img01');
+var captionText = document.getElementById('caption');
+if (img) {
+    img.onclick = function(){
+      modal.style.display = "block";
+      modalImg.src = this.src;
+      captionText.innerHTML = this.alt;
+    }
+}
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+if (span) {
+    span.onclick = function() { 
+      modal.style.display = "none";
+    }
+}
+
+
+    </script>
+</body>
+</html>
